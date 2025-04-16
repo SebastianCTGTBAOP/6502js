@@ -1,0 +1,924 @@
+;Author: Sebastian Szymczyk
+;Date: 15.04.2025
+;Programme: An extension of "Hello World" in Assembler 
+;6502 to write basic text on the screen.
+
+Initialise:
+	ldx #$01
+	stx $02
+	define text_colour $02
+	lda text_colour
+	
+	ldx #$00
+	stx $00
+	ldx #$02
+	stx $01
+	ldx #0
+
+DrawText:
+	jsr DrawA
+	jsr DrawB
+	jsr DrawC
+	jsr DrawD
+	jsr DrawE
+	jsr DrawF
+	jsr DrawG
+	jsr SetLine2
+	jsr DrawH
+	jsr DrawI
+	jsr DrawJ
+	jsr DrawK
+	jsr DrawL
+	jsr DrawM
+	jsr DrawN
+	jsr SetLine3
+	jsr DrawO
+	jsr DrawP
+	jsr DrawQ
+	jsr DrawR
+	jsr DrawS
+	jsr DrawT
+	jsr DrawU
+	jsr SetLine4
+	jsr DrawV
+	jsr DrawW
+	jsr DrawX
+	jsr DrawY
+	jsr DrawZ
+	jsr SetLine5
+	jsr DrawA
+	jsr DrawA
+	jsr DrawA
+	jsr DrawA
+	jsr DrawA
+	jsr DrawA
+
+	BRK
+
+DrawA:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawB:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw4Dot
+	jsr CNewLine
+	jsr Draw2DotM2Space
+	jsr CNewLine
+	jsr Draw4Dot
+	
+	jsr ReadjustFor4
+
+	rts
+
+DrawC:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr Draw3Dot
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawD:
+	jsr Draw4Dot
+	jsr CNewLine
+	jsr DrawSpaceDotSpaceDot
+	jsr CNewLine
+	jsr DrawSpaceDotSpaceDot
+	jsr CNewLine
+	jsr DrawSpaceDotSpaceDot
+	jsr CNewLine
+	jsr Draw4Dot
+
+	jsr ReadjustFor4
+
+	rts
+
+DrawE:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr Draw3Dot
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawF:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr DrawLeftDot
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawG:
+	jsr Draw4Dot
+	jsr CNewLine
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr DrawDotSpaceDotDot
+	jsr CNewLine
+	jsr Draw2DotM2Space
+	jsr CNewLine
+	jsr Draw4Dot
+
+	jsr ReadjustFor4
+
+	rts
+
+DrawH:
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawI:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr DrawMiddleDot
+	jsr CNewLine
+	jsr DrawMiddleDot
+	jsr CNewLine
+	jsr DrawMiddleDot
+	jsr CNewLine
+	jsr Draw3Dot
+
+	jsr ReadjustFor3
+
+	rts
+DrawJ:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr DrawMiddleDot
+	jsr CNewLine
+	jsr DrawMiddleDot
+	jsr CNewLine
+	jsr DrawMiddleDot
+	jsr CNewLine
+	jsr DrawDotDotSpace
+
+	jsr ReadjustFor3
+
+	rts
+DrawK:
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr DrawDotDotSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawL:
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr Draw3Dot
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawM:
+	jsr DrawDotSpaceSpaceSpaceDot
+	jsr CNewLine
+	jsr DrawDotDotSpaceDotDot
+	jsr CNewLine
+	jsr DrawDotSpaceDotSpaceDot
+	jsr CNewLine
+	jsr DrawDotSpaceDotSpaceDot
+	jsr CNewLine
+	jsr DrawDotSpaceDotSpaceDot
+
+	jsr ReadjustFor5
+
+	rts
+
+DrawN:
+	jsr DrawDotSpaceSpaceSpaceDot
+	jsr CNewLine
+	jsr DrawDotDotSpaceSpaceDot
+	jsr CNewLine
+	jsr DrawDotSpaceDotSpaceDot
+	jsr CNewLine
+	jsr DrawDotSpaceDotSpaceDot
+	jsr CNewLine
+	jsr DrawDotSpaceSpaceDotDot
+
+	jsr ReadjustFor5
+
+	rts
+
+DrawO:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw3Dot	
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawP:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr DrawLeftDot
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawQ:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw4Dot
+
+	jsr ReadjustFor4
+
+	rts
+
+DrawR:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr DrawDotDotSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawS:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr DrawLeftDot
+	jsr CNewLine
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr DrawRightDot
+	jsr CNewLine
+	jsr Draw3Dot
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawT:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr DrawMiddleDot
+	jsr CNewLine
+	jsr DrawMiddleDot
+	jsr CNewLine
+	jsr DrawMiddleDot
+	jsr CNewLine
+	jsr DrawMiddleDot
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawU:
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw3Dot
+
+	jsr ReadjustFor3
+
+	rts
+DrawV:
+	jsr DrawDotSpaceSpaceSpaceDot
+	jsr CNewLine
+	jsr DrawSpaceDotSpaceDotSpace
+	jsr CNewLine
+	jsr DrawSpaceDotSpaceDotSpace
+	jsr CNewLine
+	jsr DrawSpaceDotSpaceDotSpace
+	jsr CNewLine
+	jsr DrawSpaceSpaceDotSpaceSpace
+
+	jsr ReadjustFor5
+
+	rts
+DrawW:
+	jsr DrawDotSpaceDotSpaceDot
+	jsr CNewLine
+	jsr DrawDotSpaceDotSpaceDot
+	jsr CNewLine
+	jsr DrawDotSpaceDotSpaceDot
+	jsr CNewLine
+	jsr DrawDotSpaceDotSpaceDot
+	jsr CNewLine
+	jsr Draw5Dot
+
+	jsr ReadjustFor5
+
+	rts
+
+DrawX:
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr DrawMiddleDot
+	jsr CNewLine	
+	jsr DrawMiddleDot
+	jsr CNewLine	
+	jsr DrawMiddleDot
+	jsr CNewLine	
+	jsr Draw2DotMSpace
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawY:
+	jsr Draw2DotMSpace
+	jsr CNewLine
+	jsr Draw2DotMSpace
+	jsr CNewLine	
+	jsr Draw3Dot
+	jsr CNewLine	
+	jsr DrawMiddleDot
+	jsr CNewLine	
+	jsr DrawMiddleDot
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawZ:
+	jsr Draw3Dot
+	jsr CNewLine
+	jsr DrawRightDot
+	jsr CNewLine	
+	jsr DrawMiddleDot
+	jsr CNewLine	
+	jsr DrawLeftDot
+	jsr CNewLine	
+	jsr Draw3Dot
+
+	jsr ReadjustFor3
+
+	rts
+
+DrawSpaceSpaceDotSpaceSpace:
+	ldy $00	
+	iny
+	iny
+	sty $00
+	lda text_colour
+	sta ($00,x)
+
+	jsr DecrementYBy2
+	clc
+
+	rts
+
+DrawSpaceDotSpaceDotSpace:
+	ldy $00	
+	iny
+	sty $00
+	lda text_colour
+	sta ($00,x)
+
+	iny
+	iny
+	
+	sty $00
+	lda text_colour
+	sta ($00,x)
+
+	jsr DecrementYBy3
+	clc
+
+	rts
+
+DrawRightDot:
+	ldy $00	
+	iny
+	iny
+	sty $00
+	lda text_colour
+	sta ($00,x)
+
+	jsr DecrementYBy2
+	clc
+
+	rts
+
+DrawDotSpaceSpaceDotDot:
+	lda text_colour
+	sta ($00,x)
+
+	ldy $00	
+	iny
+	iny
+	iny
+	sty $00
+	sta ($00,x)
+
+	iny
+	sty $00
+	sta ($00,x)
+
+	jsr DecrementYBy4
+	clc
+
+	rts
+
+DrawDotDotSpaceSpaceDot:
+	lda text_colour
+	sta ($00,x)
+
+	ldy $00	
+	iny
+	sty $00
+	sta ($00,x)
+
+	iny
+	iny
+
+	iny
+	sty $00
+	sta ($00,x)
+
+	jsr DecrementYBy4
+	clc
+
+	rts
+
+DrawDotSpaceSpaceSpaceDot:
+	lda text_colour
+	sta ($00,x)
+
+	ldy $00	
+	iny
+	iny
+	iny
+	iny
+	sty $00
+	sta ($00,x)
+
+	jsr DecrementYBy4
+	clc
+
+	rts
+
+DrawDotDotSpaceDotDot:
+	lda text_colour
+	sta ($00,x)
+
+	ldy $00	
+	iny
+	sty $00
+	sta ($00,x)
+
+	iny
+	iny
+
+	sty $00
+	sta ($00,x)
+	iny
+	sty $00
+	sta ($00,x)
+
+	jsr DecrementYBy4
+	clc
+
+	rts
+
+DrawDotSpaceDotSpaceDot:
+	lda text_colour
+	sta ($00,x)
+
+	ldy $00	
+	iny
+	iny
+	sty $00
+	sta ($00,x)
+
+	iny
+	iny
+
+	sty $00
+	sta ($00,x)
+
+	jsr DecrementYBy4
+	clc
+
+	rts
+
+Draw3Dot:
+	lda text_colour
+	sta ($00,x)
+
+	ldy $00	
+	iny
+	sty $00
+	sta ($00,x)
+
+	iny
+	sty $00
+	sta ($00,x)
+
+	jsr DecrementYBy2
+	clc
+
+	rts
+
+Draw4Dot:
+	lda text_colour
+	sta ($00,x)
+
+	ldy $00	
+	iny
+	sty $00
+	sta ($00,x)
+
+	iny
+	sty $00
+	sta ($00,x)
+
+	iny
+	sty $00
+	sta ($00,x)
+
+	jsr DecrementYBy3
+	clc
+
+	rts
+
+Draw5Dot:
+	lda text_colour
+	sta ($00,x)
+
+	ldy $00	
+	iny
+	sty $00
+	sta ($00,x)
+
+	iny
+	sty $00
+	sta ($00,x)
+
+	iny
+	sty $00
+	sta ($00,x)
+
+	iny
+	sty $00
+	sta ($00,x)
+
+	jsr DecrementYBy4
+	clc
+
+	rts
+
+Draw2DotMSpace:
+	lda text_colour
+	sta ($00,x)
+
+	ldy $00
+	iny
+	iny
+	sty $00
+	sta ($00,x)
+
+	jsr DecrementYBy2
+	clc
+	
+	rts
+
+Draw2DotM2Space:
+	lda text_colour
+	sta ($00,x)
+
+	ldy $00
+	iny
+	iny
+	iny
+	sty $00
+	sta ($00,x)
+
+	jsr DecrementYBy3
+	clc
+	
+	rts
+
+DrawLeftDot:
+	lda text_colour
+	sta ($00,x)
+	clc
+
+	rts
+
+DrawSpaceDotSpaceDot:
+	lda text_colour
+	
+	ldy $00
+	iny
+	sty $00
+	sta ($00,x)
+
+	iny
+	iny
+	sty $00
+	sta ($00,x)
+
+	jsr DecrementYBy3
+	clc
+	
+	rts
+
+DrawDotSpaceDotDot:
+	lda text_colour
+	
+	sta ($00,x)
+
+	ldy $00
+	iny
+	iny
+	sty $00
+	sta ($00,x)
+
+	iny
+	sty $00
+	sta ($00,x)
+
+	jsr DecrementYBy3
+	clc
+	
+	rts
+
+DrawDotDotSpace:
+	lda text_colour
+	
+	sta ($00,x)
+
+	ldy $00
+	iny
+	sty $00
+	sta ($00,x)
+
+	dey
+	clc
+	
+	rts
+
+DrawMiddleDot:
+	lda text_colour
+	
+	ldy $00
+	iny
+	sty $00
+	sta ($00,x)
+
+	dey
+	clc
+	
+	rts
+
+DecrementYBy2:
+	dey
+	dey
+
+	sty $00
+	clc
+
+	rts
+
+DecrementYBy3:
+	dey
+	dey
+	dey
+
+	sty $00
+	clc
+	rts
+
+DecrementYBy4:
+	dey
+	dey
+	dey
+	dey
+
+	sty $00
+	clc
+	rts
+
+CNewLine:
+	clc
+	tya
+	adc #$20
+	sta $00
+	tay
+	
+	bcs SetNewSpaceForward
+	clc
+
+	lda text_colour
+	ldx #0
+
+	rts
+
+SetNewSpaceForward:
+	ldx $01
+	inx
+	stx $01
+	ldx #0
+	clc
+
+	rts
+
+ReadjustFor3:
+	iny
+	iny
+	iny
+	iny
+	tya
+
+	jsr Subtract
+
+	tay
+	sta $00
+
+	ldx #0
+	lda text_colour
+	clc
+
+	rts
+
+ReadjustFor4:
+	iny
+	iny
+	iny
+	iny
+	iny
+	tya
+
+	jsr Subtract
+
+	tay
+	sta $00
+
+	ldx #0
+	lda text_colour
+	clc
+
+	rts
+
+ReadjustFor5:
+	iny
+	iny
+	iny
+	iny
+	iny
+	iny
+	tya
+
+	jsr Subtract
+
+	tay
+	sta $00
+
+	ldx #0
+	lda text_colour
+	clc
+
+	rts
+
+Subtract:
+	clc
+    	sbc #$7f
+	bcc ReturnToOldSpace
+
+	ldx #0
+
+	rts
+
+ReturnToOldSpace:
+	ldx $01
+	dex
+	stx $01
+	ldx #0
+	clc
+
+	rts
+
+SetLine2:
+	ldx #$c0
+	stx $00
+	ldx #0
+	clc
+
+	rts
+
+SetLine3:
+	ldx #$03
+	stx $01
+	ldx #$80
+	stx $00
+	ldx #0
+	clc
+
+	rts
+
+SetLine4:
+	ldx #$04
+	stx $01
+	ldx #$40
+	stx $00
+	ldx #0
+	clc
+
+	rts
+
+SetLine5:
+	ldx #$05
+	stx $01
+	ldx #$00
+	stx $00
+	ldx #0
+	clc
+
+	rts
